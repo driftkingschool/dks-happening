@@ -1,10 +1,11 @@
 /* =====================================================
    DKS Championship 30/07/2026 , Page Logic
-   - Live countdown to the event
-   - Scroll-scrubbed video (Bangkok recipe: direct seek,
-     live duration read, no rAF for scroll updates)
-   - Fast animated scroll to #register + floating pill
-   - Lead form -> Apps Script (sheet + email), honeypot
+   - Full-page scroll-scrub: the whole document scroll
+     drives the fixed background video, frame 1 (top) to
+     last frame (bottom). Direct seek, live duration read.
+   - Story: 5 points cross-fade while the video scrubs.
+   - Live countdown, fast animated scroll, floating pill,
+     lead form -> Apps Script (sheet + email), honeypot.
    ===================================================== */
 
 'use strict';
@@ -12,6 +13,8 @@
 var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyX80BdKV6fdp7ylZwmIKVSQOGWLQugqnoEs57EiViBZNdN5zI0U08qsVyo1iebB6N7ow/exec';
 var EVENT_TIME = new Date('2026-07-30T17:00:00+03:00').getTime();
 var REDUCED_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function clamp01(n) { return Math.min(1, Math.max(0, n)); }
 
 /* ====== COUNTDOWN ====== */
 (function () {
@@ -38,38 +41,47 @@ var REDUCED_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mo
   tick();
 })();
 
-/* ====== SCROLL-SCRUB VIDEO (Bangkok recipe) ====== */
+/* ====== FULL-PAGE SCRUB + STORY ====== */
 (function () {
-  var scene = document.querySelector('.scrub-scene');
-  if (!scene) return;
-  var video = scene.querySelector('.scrub-video');
-  var steps = [].slice.call(scene.querySelectorAll('.scrub-step'));
-  if (!video || !steps.length) return;
+  var video = document.querySelector('#video-bg .scrub-video');
+  var story = document.getElementById('story');
+  var points = [].slice.call(document.querySelectorAll('.story-point'));
+
   if (REDUCED_MOTION) {
-    scene.classList.add('no-scrub');
-    steps.forEach(function (s) { s.classList.add('active'); });
+    points.forEach(function (p) { p.classList.add('active'); });
     return;
   }
-  try { video.load(); } catch (e) {}
+  if (video) { try { video.load(); } catch (e) {} }
+
   function update() {
-    var top = scene.getBoundingClientRect().top;
-    var dist = scene.offsetHeight - window.innerHeight;
-    var progress = dist > 0 ? Math.min(1, Math.max(0, (-top) / dist)) : 0;
-    var d = video.duration; // read live , cached value races metadata load
-    if (d && isFinite(d)) {
-      var t = progress * (d - 0.05);
-      if (Math.abs(video.currentTime - t) > 0.01) { try { video.currentTime = t; } catch (e) {} }
+    // Global document progress drives the video: top = frame 1, bottom = last frame.
+    if (video) {
+      var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      var progress = maxScroll > 0 ? clamp01(window.pageYOffset / maxScroll) : 0;
+      var dur = video.duration; // read live , a cached value races metadata load
+      if (dur && isFinite(dur)) {
+        var t = progress * (dur - 0.05);
+        if (Math.abs(video.currentTime - t) > 0.01) { try { video.currentTime = t; } catch (e) {} }
+      }
     }
-    var idx = Math.floor(progress * steps.length - 0.0001);
-    if (idx < 0) idx = 0;
-    if (idx > steps.length - 1) idx = steps.length - 1;
-    for (var i = 0; i < steps.length; i++) { steps[i].classList.toggle('active', i === idx); }
+    // Story progress drives which of the 5 points is centered.
+    if (story && points.length) {
+      var dist = story.offsetHeight - window.innerHeight;
+      var sp = dist > 0 ? clamp01((-story.getBoundingClientRect().top) / dist) : 0;
+      var idx = Math.floor(sp * points.length - 0.0001);
+      if (idx < 0) idx = 0;
+      if (idx > points.length - 1) idx = points.length - 1;
+      for (var i = 0; i < points.length; i++) { points[i].classList.toggle('active', i === idx); }
+    }
   }
+
   window.addEventListener('scroll', update, { passive: true });
   window.addEventListener('resize', update);
-  ['loadedmetadata', 'loadeddata', 'durationchange', 'canplay'].forEach(function (ev) {
-    video.addEventListener(ev, update);
-  });
+  if (video) {
+    ['loadedmetadata', 'loadeddata', 'durationchange', 'canplay'].forEach(function (ev) {
+      video.addEventListener(ev, update);
+    });
+  }
   update();
 })();
 
@@ -85,19 +97,14 @@ var REDUCED_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mo
     if (REDUCED_MOTION) { window.scrollTo(0, targetY); return; }
     var startY = window.pageYOffset;
     var delta = targetY - startY;
-    var duration = 1300; // fast, but the scrubbed video visibly races forward
+    var duration = 1400; // fast, but the scrubbed video visibly races forward toward the 30.07 reveal
     var start = performance.now();
     var cancelled = false;
-    function cancel() { cancelled = true; cleanup(); }
     function cleanup() {
-      ['wheel', 'touchstart', 'keydown'].forEach(function (ev) {
-        window.removeEventListener(ev, cancel);
-      });
+      ['wheel', 'touchstart', 'keydown'].forEach(function (ev) { window.removeEventListener(ev, cancel); });
     }
-    // user input takes back control mid-animation
-    ['wheel', 'touchstart', 'keydown'].forEach(function (ev) {
-      window.addEventListener(ev, cancel, { passive: true });
-    });
+    function cancel() { cancelled = true; cleanup(); }
+    ['wheel', 'touchstart', 'keydown'].forEach(function (ev) { window.addEventListener(ev, cancel, { passive: true }); });
     function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
     function frame(now) {
       if (cancelled) return;
@@ -116,17 +123,9 @@ var REDUCED_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mo
     pill.addEventListener('click', fastScrollToRegister);
     var heroVisible = true;
     var registerVisible = false;
-    function refreshPill() {
-      pill.classList.toggle('visible', !heroVisible && !registerVisible);
-    }
-    new IntersectionObserver(function (entries) {
-      heroVisible = entries[0].isIntersecting;
-      refreshPill();
-    }, { threshold: 0.05 }).observe(hero);
-    new IntersectionObserver(function (entries) {
-      registerVisible = entries[0].isIntersecting;
-      refreshPill();
-    }, { threshold: 0.15 }).observe(registerEl);
+    function refreshPill() { pill.classList.toggle('visible', !heroVisible && !registerVisible); }
+    new IntersectionObserver(function (entries) { heroVisible = entries[0].isIntersecting; refreshPill(); }, { threshold: 0.05 }).observe(hero);
+    new IntersectionObserver(function (entries) { registerVisible = entries[0].isIntersecting; refreshPill(); }, { threshold: 0.15 }).observe(registerEl);
   }
 })();
 
@@ -170,12 +169,11 @@ var REDUCED_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mo
 
     fetch(APPS_SCRIPT_URL, {
       method: 'POST',
-      // text/plain avoids a CORS preflight against Apps Script
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // avoids CORS preflight
       body: JSON.stringify(payload),
       redirect: 'follow'
     })
-      .then(function (res) { return res.json(); }) // Apps Script always answers HTTP 200 , trust result.ok only
+      .then(function (res) { return res.json(); }) // Apps Script always answers HTTP 200 , trust result.ok
       .then(function (result) {
         if (!result.ok) throw new Error(result.error || 'שגיאה בשליחה');
         form.hidden = true;
@@ -184,11 +182,10 @@ var REDUCED_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mo
       })
       .catch(function (err) {
         console.error('Lead submit failed:', err);
-        waFallback.href =
-          'https://wa.me/972537757323?text=' + encodeURIComponent(
-            'היי, אני רוצה להירשם לאליפות DKS 30/07.\nשם: ' + payload.fullName +
-            '\nטלפון: ' + payload.phone + '\nתפקיד: ' + payload.role +
-            (payload.notes ? '\nהערות: ' + payload.notes : ''));
+        waFallback.href = 'https://wa.me/972537757323?text=' + encodeURIComponent(
+          'היי, אני רוצה להירשם לאליפות DKS 30/07.\nשם: ' + payload.fullName +
+          '\nטלפון: ' + payload.phone + '\nתפקיד: ' + payload.role +
+          (payload.notes ? '\nהערות: ' + payload.notes : ''));
         errorEl.hidden = false;
         btn.disabled = false;
         btn.classList.remove('is-loading');

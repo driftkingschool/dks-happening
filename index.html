@@ -11,7 +11,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="אליפות DKS 30/07 · Drift King School">
   <meta property="og:description" content="תחרות דריפט + מפגש מכוניות. אירוע ערב בבית המוטורי. מספר המקומות מוגבל.">
-  <meta property="og:image" content="https://driftkingschool.github.io/dks-happening/hap-poster.jpg">
+  <meta property="og:image" content="https://driftkingschool.github.io/dks-happening/hap-last.jpg">
   <meta property="og:url" content="https://driftkingschool.github.io/dks-happening/">
   <meta property="og:locale" content="he_IL">
 
@@ -37,16 +37,22 @@
   </defs>
 </svg>
 
+<!-- ============ FULL-PAGE SCRUB VIDEO BACKGROUND ============ -->
+<div id="video-bg" aria-hidden="true">
+  <video class="scrub-video" muted playsinline preload="auto" poster="hap-poster.jpg">
+    <source src="hap-scrub.mp4" type="video/mp4">
+  </video>
+</div>
+<div id="video-scrim" aria-hidden="true"></div>
+
 <!-- ============ FLOATING REGISTER PILL ============ -->
 <button type="button" id="float-register" class="float-register" hidden aria-label="לחץ כאן להרשמה">
   <span class="float-dot" aria-hidden="true"></span>
   לחץ כאן להרשמה
 </button>
 
-<!-- ============ HERO ============ -->
+<!-- ============ HERO (over frame 1) ============ -->
 <section class="hero" id="hero">
-  <div class="hero-bg" aria-hidden="true"></div>
-
   <header class="topbar">
     <div class="logo-wrap">
       <img src="logo.png" alt="Drift King School" class="logo-img">
@@ -83,142 +89,112 @@
   </div>
 </section>
 
-<!-- ============ SCROLL-SCRUB VIDEO SCENE ============ -->
-<section class="scrub-scene" id="experience">
-  <div class="scrub-sticky">
-    <video class="scrub-video" muted playsinline preload="auto" poster="hap-poster.jpg" aria-hidden="true">
-      <source src="hap-scrub.mp4" type="video/mp4">
-    </video>
-    <div class="scrub-overlay" aria-hidden="true"></div>
-    <div class="scrub-header">
-      <span class="section-tag">מה מחכה לכם ב-30/07</span>
-    </div>
-    <div class="scrub-steps">
-      <div class="scrub-step">
-        <div class="step-panel">
-          <div class="step-icon"><svg><use href="#i-timer"/></svg></div>
-          <h3>מערכת מדידת זמנים</h3>
-          <p>כל הקפה נמדדת בשידור חי. הזמן שלך עולה על הלוח, מול כולם.</p>
-        </div>
+<!-- ============ STORY (pinned, 5 points cross-fade over the scrubbing video) ============ -->
+<section class="story" id="story">
+  <div class="story-sticky">
+    <span class="story-tag">מה מחכה לכם ב-30/07</span>
+    <div class="story-points">
+      <div class="story-point">
+        <div class="step-icon"><svg><use href="#i-timer"/></svg></div>
+        <h3>מערכת מדידת זמנים</h3>
+        <p>כל הקפה נמדדת בשידור חי. הזמן שלך עולה על הלוח, מול כולם.</p>
       </div>
-      <div class="scrub-step">
-        <div class="step-panel">
-          <div class="step-icon"><svg><use href="#i-route"/></svg></div>
-          <h3>תוואי מטורף</h3>
-          <p>תוואי תחרותי שנבנה במיוחד לאירוע. טכני, מהיר, בלי רגע מנוחה.</p>
-        </div>
+      <div class="story-point">
+        <div class="step-icon"><svg><use href="#i-route"/></svg></div>
+        <h3>תוואי תחרותי אמיתי</h3>
+        <p>תוואי שנבנה במיוחד לאירוע. טכני, מהיר, בלי רגע מנוחה.</p>
       </div>
-      <div class="scrub-step">
-        <div class="step-panel">
-          <div class="step-icon"><svg><use href="#i-wind"/></svg></div>
-          <h3>הרבה עשן ואקשן</h3>
-          <p>צמיגים בוערים, דריפטים צמודים לקיר, והקהל מסביב.</p>
-        </div>
+      <div class="story-point">
+        <div class="step-icon"><svg><use href="#i-wind"/></svg></div>
+        <h3>הרבה עשן ואקשן</h3>
+        <p>צמיגים בוערים, דריפטים צמודים לקיר, והקהל מסביב.</p>
       </div>
-      <div class="scrub-step">
-        <div class="step-panel">
-          <div class="step-icon"><svg><use href="#i-flame"/></svg></div>
-          <h3>אווירה מטורפת</h3>
-          <p>מוזיקה, קהל, ומפגש מכוניות פתוח לכל חובבי הרכב.</p>
-        </div>
+      <div class="story-point">
+        <div class="step-icon"><svg><use href="#i-flame"/></svg></div>
+        <h3>אווירה של אליפות</h3>
+        <p>מוזיקה, קהל, ומפגש מכוניות פתוח לכל חובבי הרכב.</p>
       </div>
-      <div class="scrub-step">
-        <div class="step-panel">
-          <div class="step-icon"><svg><use href="#i-flag"/></svg></div>
-          <h3>נהגים מכל הרמות</h3>
-          <p>מתחילים לצד אלופים. כל אחד נלחם על הזמן של עצמו.</p>
-        </div>
-      </div>
-      <div class="scrub-step">
-        <div class="step-panel">
-          <div class="step-icon"><svg><use href="#i-trophy"/></svg></div>
-          <h3>מספר המקומות מוגבל</h3>
-          <p>אל תישארו בחוץ.</p>
-          <button type="button" class="cta-primary step-cta" data-fast-register>שריינו מקום עכשיו ←</button>
-        </div>
+      <div class="story-point">
+        <div class="step-icon"><svg><use href="#i-flag"/></svg></div>
+        <h3>נהגים מכל הרמות</h3>
+        <p>מתחילים לצד אלופים. כל אחד נלחם על הזמן של עצמו.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ INFO STRIP ============ -->
-<section class="section info-section" id="info">
+<!-- ============ REGISTER (over the last frame: fireworks + 30.07) ============ -->
+<section class="section register-section" id="register">
   <div class="container">
     <div class="info-grid">
       <div class="info-tile">
         <span class="info-label">מה</span>
         <strong class="info-value">תחרות דריפט + מפגש מכוניות</strong>
-        <span class="info-detail">תחרות בשיפוט מקצועי לנהגים, ומפגש פתוח לכל חובבי הרכב</span>
       </div>
       <div class="info-tile">
         <span class="info-label">איפה</span>
-        <strong class="info-value">בבית המוטורי</strong>
-        <span class="info-detail">מוטור סיטי, באר שבע. ניווט ב-Waze: "מוטור סיטי באר שבע"</span>
+        <strong class="info-value">בבית המוטורי · באר שבע</strong>
       </div>
       <div class="info-tile">
         <span class="info-label">מתי</span>
-        <strong class="info-value">חמישי, 30/07/2026 · 17:00</strong>
-        <span class="info-detail">אירוע ערב. לוח זמנים מלא יישלח לנרשמים</span>
+        <strong class="info-value">חמישי · 30/07/2026 · 17:00</strong>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ============ REGISTER ============ -->
-<section class="section register-section" id="register">
-  <div class="container">
-    <span class="section-tag">ההרשמה פתוחה</span>
-    <h2 class="register-title">שריינו מקום <span class="accent">לאליפות.</span></h2>
-    <p class="register-sub">מלאו פרטים ונחזור אליכם עם כל המידע. ההרשמה חינם ואינה מחייבת.</p>
+    <div class="register-card">
+      <span class="section-tag">ההרשמה פתוחה</span>
+      <h2 class="register-title">שריינו מקום <span class="accent">לאליפות.</span></h2>
+      <p class="register-sub">מלאו פרטים ונחזור אליכם עם כל המידע. ההרשמה חינם ואינה מחייבת.</p>
 
-    <form id="lead-form" novalidate>
-      <label>
-        <span>שם מלא</span>
-        <input type="text" name="fullName" required maxlength="80" placeholder="ישראל ישראלי" autocomplete="name">
-      </label>
-      <label>
-        <span>טלפון נייד</span>
-        <input type="tel" name="phone" required inputmode="numeric" pattern="05[0-9]{8}" maxlength="10" placeholder="0501234567" autocomplete="tel">
-      </label>
-      <fieldset class="role-group">
-        <legend>אני מגיע בתור</legend>
-        <label class="role-tile">
-          <input type="radio" name="role" value="נהג מתחרה" checked>
-          <div><strong>נהג מתחרה</strong><span>אני רוצה להתחרות על הזמן</span></div>
+      <form id="lead-form" novalidate>
+        <label>
+          <span>שם מלא</span>
+          <input type="text" name="fullName" required maxlength="80" placeholder="ישראל ישראלי" autocomplete="name">
         </label>
-        <label class="role-tile">
-          <input type="radio" name="role" value="צופה - מפגש מכוניות">
-          <div><strong>צופה · מפגש מכוניות</strong><span>אני מגיע לחוות את האירוע</span></div>
+        <label>
+          <span>טלפון נייד</span>
+          <input type="tel" name="phone" required inputmode="numeric" pattern="05[0-9]{8}" maxlength="10" placeholder="0501234567" autocomplete="tel">
         </label>
-      </fieldset>
-      <label>
-        <span>הערות (לא חובה)</span>
-        <textarea name="notes" rows="2" maxlength="500" placeholder="הרכב שלך, שאלות, בקשות..."></textarea>
-      </label>
-      <!-- honeypot: off-screen, bots only -->
-      <div class="hp-wrap" aria-hidden="true">
-        <input type="text" name="website" tabindex="-1" autocomplete="off">
+        <fieldset class="role-group">
+          <legend>אני מגיע בתור</legend>
+          <label class="role-tile">
+            <input type="radio" name="role" value="נהג מתחרה" checked>
+            <div><strong>נהג מתחרה</strong><span>אני רוצה להתחרות על הזמן</span></div>
+          </label>
+          <label class="role-tile">
+            <input type="radio" name="role" value="צופה - מפגש מכוניות">
+            <div><strong>צופה · מפגש מכוניות</strong><span>אני מגיע לחוות את האירוע</span></div>
+          </label>
+        </fieldset>
+        <label>
+          <span>הערות (לא חובה)</span>
+          <textarea name="notes" rows="2" maxlength="500" placeholder="הרכב שלך, שאלות, בקשות..."></textarea>
+        </label>
+        <!-- honeypot: off-screen, bots only -->
+        <div class="hp-wrap" aria-hidden="true">
+          <input type="text" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <button type="submit" class="cta-primary submit-btn" id="lead-submit">שריינו לי מקום</button>
+      </form>
+
+      <div id="lead-success" class="lead-msg" hidden>
+        <div class="success-mark" aria-hidden="true">✓</div>
+        <h3>הפרטים נקלטו!</h3>
+        <p>נחזור אליכם עם כל הפרטים לקראת 30/07. נתראה במסלול.</p>
       </div>
-      <button type="submit" class="cta-primary submit-btn" id="lead-submit">שריינו לי מקום</button>
-    </form>
 
-    <div id="lead-success" class="lead-msg" hidden>
-      <div class="success-mark" aria-hidden="true">✓</div>
-      <h3>הפרטים נקלטו!</h3>
-      <p>נחזור אליכם עם כל הפרטים לקראת 30/07. נתראה במסלול.</p>
+      <div id="lead-error" class="lead-msg" hidden>
+        <p>משהו השתבש בשליחה. אפשר לנסות שוב, או:</p>
+        <a id="wa-fallback" class="cta-primary" target="_blank" rel="noopener">
+          <svg class="icon-inline"><use href="#i-whatsapp"/></svg> להירשם דרך וואטסאפ
+        </a>
+      </div>
+
+      <p class="contact-strip">
+        <span>שאלות? חייגו:</span>
+        <a href="tel:+972537757323" class="phone-link">053-775-7323</a>
+      </p>
     </div>
-
-    <div id="lead-error" class="lead-msg" hidden>
-      <p>משהו השתבש בשליחה. אפשר לנסות שוב, או:</p>
-      <a id="wa-fallback" class="cta-primary" target="_blank" rel="noopener">
-        <svg class="icon-inline"><use href="#i-whatsapp"/></svg> להירשם דרך וואטסאפ
-      </a>
-    </div>
-
-    <p class="contact-strip">
-      <span>שאלות? חייגו:</span>
-      <a href="tel:+972537757323" class="phone-link">053-775-7323</a>
-    </p>
   </div>
 </section>
 
