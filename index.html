@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <meta name="theme-color" content="#0a0a0a">
-  <title>תחרות הפנינג 30/07 , Drift King School</title>
-  <meta name="description" content="תחרות דריפט + מפגש מכוניות במוטור סיטי, באר שבע. חמישי 30/07/2026. פרטים מלאים בקרוב.">
+  <meta name="theme-color" content="#0a0a0c">
+  <title>אליפות DKS 30/07 , Drift King School</title>
+  <meta name="description" content="אליפות DKS , תחרות דריפט + מפגש מכוניות. אירוע ערב בבית המוטורי (מוטור סיטי, באר שבע), חמישי 30/07/2026. מספר המקומות מוגבל.">
 
   <!-- Open Graph / WhatsApp / Instagram preview -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="תחרות הפנינג 30/07 , Drift King School">
-  <meta property="og:description" content="תחרות דריפט + מפגש מכוניות במוטור סיטי. פרטים מלאים בקרוב.">
-  <meta property="og:image" content="https://driftkingschool.github.io/dks-happening/hero-fallback.jpg">
+  <meta property="og:title" content="אליפות DKS 30/07 , Drift King School">
+  <meta property="og:description" content="תחרות דריפט + מפגש מכוניות. אירוע ערב בבית המוטורי. מספר המקומות מוגבל.">
+  <meta property="og:image" content="https://driftkingschool.github.io/dks-happening/hap-poster.jpg">
   <meta property="og:url" content="https://driftkingschool.github.io/dks-happening/">
   <meta property="og:locale" content="he_IL">
 
@@ -23,66 +23,200 @@
 </head>
 <body>
 
+<!-- SVG icon defs -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-timer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="10" y1="2" x2="14" y2="2"/><line x1="12" y1="14" x2="15" y2="11"/><circle cx="12" cy="14" r="8"/></symbol>
+    <symbol id="i-route" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></symbol>
+    <symbol id="i-wind" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-whatsapp" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============ FLOATING REGISTER PILL ============ -->
+<button type="button" id="float-register" class="float-register" hidden aria-label="לחץ כאן להרשמה">
+  <span class="float-dot" aria-hidden="true"></span>
+  לחץ כאן להרשמה
+</button>
+
 <!-- ============ HERO ============ -->
-<section class="hero">
-  <video class="hero-video" autoplay muted loop playsinline poster="hero-fallback.jpg">
-    <source src="hero-bg.mp4" type="video/mp4">
-  </video>
-  <div class="hero-overlay" aria-hidden="true"></div>
+<section class="hero" id="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
 
   <header class="topbar">
     <div class="logo-wrap">
       <img src="logo.png" alt="Drift King School" class="logo-img">
       <span class="logo-name">DRIFT KING SCHOOL</span>
     </div>
-    <a href="https://driftkingschool.github.io/track-days/" class="topbar-back" data-he="לכל ימי המסלול ←">לכל ימי המסלול ←</a>
+    <a href="https://driftkingschool.github.io/track-days/" class="topbar-back">לכל ימי המסלול ←</a>
   </header>
 
   <div class="hero-content">
-    <span class="hero-eyebrow" data-he="חמישי 30/07/2026 . מוטור סיטי, באר שבע">חמישי 30/07/2026 . מוטור סיטי, באר שבע</span>
-    <h1 class="hero-title" data-he='תחרות <span class="accent">הפנינג.</span>'>תחרות <span class="accent">הפנינג.</span></h1>
-    <p class="hero-sub" data-he="תחרות דריפט + מפגש מכוניות. ערב אחד במוטור סיטי שמחבר את כל הסצנה: שופטים, עשן, ומכוניות שלא רואים בכביש.">תחרות דריפט + מפגש מכוניות. ערב אחד במוטור סיטי שמחבר את כל הסצנה: שופטים, עשן, ומכוניות שלא רואים בכביש.</p>
+    <span class="event-chip">אירוע ערב</span>
+    <h1 class="hero-title">אליפות <span class="accent">DKS</span></h1>
+    <div class="hero-date">30/07</div>
+    <p class="hero-place"><svg class="icon-inline"><use href="#i-pin"/></svg> בבית המוטורי · מוטור סיטי, באר שבע</p>
+    <p class="hero-sub">תחרות דריפט + מפגש מכוניות. ערב אחד שמחבר את כל הסצנה: שופטים, עשן, זמנים על הלוח, ומכוניות שלא רואים בכביש.</p>
 
-    <span class="soon-badge" data-he="פרטים מלאים בקרוב">פרטים מלאים בקרוב</span>
+    <div class="countdown" role="timer" aria-label="ספירה לאחור לאירוע">
+      <div class="cd-cell"><span class="cd-num" id="cd-days">--</span><span class="cd-label">ימים</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-cell"><span class="cd-num" id="cd-hours">--</span><span class="cd-label">שעות</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-cell"><span class="cd-num" id="cd-mins">--</span><span class="cd-label">דקות</span></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-cell"><span class="cd-num" id="cd-secs">--</span><span class="cd-label">שניות</span></div>
+    </div>
+    <p class="cd-caption">חמישי · 30/07/2026 · 17:00</p>
 
-    <div class="hero-actions">
-      <a href="https://wa.me/972537757323?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%AA%D7%97%D7%A8%D7%95%D7%AA%20%D7%94%D7%94%D7%A4%D7%A0%D7%99%D7%A0%D7%92%2030%2F07" target="_blank" rel="noopener" class="cta-primary" data-he="עדכנו אותי בוואטסאפ">עדכנו אותי בוואטסאפ</a>
-      <p class="cta-microcopy" data-he="בלי התחייבות. נשלח לך את כל הפרטים ברגע שההרשמה תיפתח.">בלי התחייבות. נשלח לך את כל הפרטים ברגע שההרשמה תיפתח.</p>
+    <button type="button" class="cta-primary" data-fast-register>להרשמה מהירה ←</button>
+    <p class="cta-microcopy">מספר המקומות מוגבל.</p>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <span>גללו כדי לחוות את זה</span>
+    <span class="scroll-arrow">↓</span>
+  </div>
+</section>
+
+<!-- ============ SCROLL-SCRUB VIDEO SCENE ============ -->
+<section class="scrub-scene" id="experience">
+  <div class="scrub-sticky">
+    <video class="scrub-video" muted playsinline preload="auto" poster="hap-poster.jpg" aria-hidden="true">
+      <source src="hap-scrub.mp4" type="video/mp4">
+    </video>
+    <div class="scrub-overlay" aria-hidden="true"></div>
+    <div class="scrub-header">
+      <span class="section-tag">מה מחכה לכם ב-30/07</span>
+    </div>
+    <div class="scrub-steps">
+      <div class="scrub-step">
+        <div class="step-panel">
+          <div class="step-icon"><svg><use href="#i-timer"/></svg></div>
+          <h3>מערכת מדידת זמנים</h3>
+          <p>כל הקפה נמדדת בשידור חי. הזמן שלך עולה על הלוח, מול כולם.</p>
+        </div>
+      </div>
+      <div class="scrub-step">
+        <div class="step-panel">
+          <div class="step-icon"><svg><use href="#i-route"/></svg></div>
+          <h3>תוואי מטורף</h3>
+          <p>תוואי תחרותי שנבנה במיוחד לאירוע. טכני, מהיר, בלי רגע מנוחה.</p>
+        </div>
+      </div>
+      <div class="scrub-step">
+        <div class="step-panel">
+          <div class="step-icon"><svg><use href="#i-wind"/></svg></div>
+          <h3>הרבה עשן ואקשן</h3>
+          <p>צמיגים בוערים, דריפטים צמודים לקיר, והקהל מסביב.</p>
+        </div>
+      </div>
+      <div class="scrub-step">
+        <div class="step-panel">
+          <div class="step-icon"><svg><use href="#i-flame"/></svg></div>
+          <h3>אווירה מטורפת</h3>
+          <p>מוזיקה, קהל, ומפגש מכוניות פתוח לכל חובבי הרכב.</p>
+        </div>
+      </div>
+      <div class="scrub-step">
+        <div class="step-panel">
+          <div class="step-icon"><svg><use href="#i-flag"/></svg></div>
+          <h3>נהגים מכל הרמות</h3>
+          <p>מתחילים לצד אלופים. כל אחד נלחם על הזמן של עצמו.</p>
+        </div>
+      </div>
+      <div class="scrub-step">
+        <div class="step-panel">
+          <div class="step-icon"><svg><use href="#i-trophy"/></svg></div>
+          <h3>מספר המקומות מוגבל</h3>
+          <p>אל תישארו בחוץ.</p>
+          <button type="button" class="cta-primary step-cta" data-fast-register>שריינו מקום עכשיו ←</button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ============ INFO STRIP ============ -->
-<section class="section info-section">
+<section class="section info-section" id="info">
   <div class="container">
     <div class="info-grid">
       <div class="info-tile">
-        <span class="info-label" data-he="מה">מה</span>
-        <strong class="info-value" data-he="תחרות דריפט + מפגש מכוניות">תחרות דריפט + מפגש מכוניות</strong>
-        <span class="info-detail" data-he="תחרות עם שופטים מקצועיים לנהגים, ומפגש פתוח לכל חובבי הרכב">תחרות עם שופטים מקצועיים לנהגים, ומפגש פתוח לכל חובבי הרכב</span>
+        <span class="info-label">מה</span>
+        <strong class="info-value">תחרות דריפט + מפגש מכוניות</strong>
+        <span class="info-detail">תחרות בשיפוט מקצועי לנהגים, ומפגש פתוח לכל חובבי הרכב</span>
       </div>
       <div class="info-tile">
-        <span class="info-label" data-he="איפה">איפה</span>
-        <strong class="info-value" data-he="מוטור סיטי, באר שבע">מוטור סיטי, באר שבע</strong>
-        <span class="info-detail" data-he='ניווט ב-Waze: "מוטור סיטי באר שבע"'>ניווט ב-Waze: "מוטור סיטי באר שבע"</span>
+        <span class="info-label">איפה</span>
+        <strong class="info-value">בבית המוטורי</strong>
+        <span class="info-detail">מוטור סיטי, באר שבע. ניווט ב-Waze: "מוטור סיטי באר שבע"</span>
       </div>
       <div class="info-tile">
-        <span class="info-label" data-he="מתי">מתי</span>
-        <strong class="info-value" data-he="חמישי, 30/07/2026">חמישי, 30/07/2026</strong>
-        <span class="info-detail" data-he="שעות ולוח זמנים מלא יפורסמו בקרוב">שעות ולוח זמנים מלא יפורסמו בקרוב</span>
+        <span class="info-label">מתי</span>
+        <strong class="info-value">חמישי, 30/07/2026 · 17:00</strong>
+        <span class="info-detail">אירוע ערב. לוח זמנים מלא יישלח לנרשמים</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ FINAL CTA ============ -->
-<section class="final-cta">
+<!-- ============ REGISTER ============ -->
+<section class="section register-section" id="register">
   <div class="container">
-    <h2 data-he="רוצים להיות הראשונים לדעת?">רוצים להיות הראשונים לדעת?</h2>
-    <p data-he="ההרשמה לתחרות ולמפגש תיפתח כאן. עד אז, אפשר לדבר איתנו ישירות.">ההרשמה לתחרות ולמפגש תיפתח כאן. עד אז, אפשר לדבר איתנו ישירות.</p>
-    <a href="https://wa.me/972537757323?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%AA%D7%97%D7%A8%D7%95%D7%AA%20%D7%94%D7%94%D7%A4%D7%A0%D7%99%D7%A0%D7%92%2030%2F07" target="_blank" rel="noopener" class="cta-primary" data-he="עדכנו אותי בוואטסאפ">עדכנו אותי בוואטסאפ</a>
+    <span class="section-tag">ההרשמה פתוחה</span>
+    <h2 class="register-title">שריינו מקום <span class="accent">לאליפות.</span></h2>
+    <p class="register-sub">מלאו פרטים ונחזור אליכם עם כל המידע. ההרשמה אינה תשלום.</p>
+
+    <form id="lead-form" novalidate>
+      <label>
+        <span>שם מלא</span>
+        <input type="text" name="fullName" required maxlength="80" placeholder="ישראל ישראלי" autocomplete="name">
+      </label>
+      <label>
+        <span>טלפון נייד</span>
+        <input type="tel" name="phone" required inputmode="numeric" pattern="05[0-9]{8}" maxlength="10" placeholder="0501234567" autocomplete="tel">
+      </label>
+      <fieldset class="role-group">
+        <legend>אני מגיע בתור</legend>
+        <label class="role-tile">
+          <input type="radio" name="role" value="נהג מתחרה" checked>
+          <div><strong>נהג מתחרה</strong><span>אני רוצה להתחרות על הזמן</span></div>
+        </label>
+        <label class="role-tile">
+          <input type="radio" name="role" value="צופה - מפגש מכוניות">
+          <div><strong>צופה · מפגש מכוניות</strong><span>אני מגיע לחוות את האירוע</span></div>
+        </label>
+      </fieldset>
+      <label>
+        <span>הערות (לא חובה)</span>
+        <textarea name="notes" rows="2" maxlength="500" placeholder="הרכב שלך, שאלות, בקשות..."></textarea>
+      </label>
+      <!-- honeypot: off-screen, bots only -->
+      <div class="hp-wrap" aria-hidden="true">
+        <input type="text" name="website" tabindex="-1" autocomplete="off">
+      </div>
+      <button type="submit" class="cta-primary submit-btn" id="lead-submit">שריינו לי מקום</button>
+    </form>
+
+    <div id="lead-success" class="lead-msg" hidden>
+      <div class="success-mark" aria-hidden="true">✓</div>
+      <h3>הפרטים נקלטו!</h3>
+      <p>נחזור אליך עם כל הפרטים לקראת 30/07. נתראה במסלול.</p>
+    </div>
+
+    <div id="lead-error" class="lead-msg" hidden>
+      <p>משהו השתבש בשליחה. אפשר לנסות שוב, או:</p>
+      <a id="wa-fallback" class="cta-primary" target="_blank" rel="noopener">
+        <svg class="icon-inline"><use href="#i-whatsapp"/></svg> להירשם דרך וואטסאפ
+      </a>
+    </div>
+
     <p class="contact-strip">
-      <span data-he="או חייגו ישירות:">או חייגו ישירות:</span>
+      <span>שאלות? חייגו:</span>
       <a href="tel:+972537757323" class="phone-link">053-775-7323</a>
     </p>
   </div>
@@ -91,17 +225,18 @@
 <!-- ============ FOOTER ============ -->
 <footer class="footer">
   <div class="container">
-    <p class="motto" data-he="בלי גבולות, רק עשן">בלי גבולות, רק עשן</p>
-    <p data-he="Drift King School . מוטור סיטי, באר שבע">Drift King School . מוטור סיטי, באר שבע</p>
+    <p class="motto">בלי גבולות, רק עשן</p>
+    <p>Drift King School · מוטור סיטי, באר שבע</p>
     <p>
-      <a href="https://driftkingschool.github.io/track-days/" data-he="ימי מסלול">ימי מסלול</a> .
-      <a href="https://driftkingschool.com">driftkingschool.com</a> .
-      <a href="https://instagram.com/driftkingschool">@driftkingschool</a> .
+      <a href="https://driftkingschool.github.io/track-days/">ימי מסלול</a> ·
+      <a href="https://driftkingschool.com">driftkingschool.com</a> ·
+      <a href="https://instagram.com/driftkingschool">@driftkingschool</a> ·
       <a href="tel:+972537757323" class="phone-link">053-775-7323</a>
     </p>
-    <p class="legal" data-he="© 2026 Drift King School. כל הזכויות שמורות.">© 2026 Drift King School. כל הזכויות שמורות.</p>
+    <p class="legal">© 2026 Drift King School. כל הזכויות שמורות.</p>
   </div>
 </footer>
 
+<script src="app.js"></script>
 </body>
 </html>
