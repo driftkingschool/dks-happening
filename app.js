@@ -149,6 +149,8 @@ function clamp01(n) { return Math.min(1, Math.max(0, n)); }
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    // normalize once more before native validation, in case the value was autofilled (no 'input' event)
+    if (phoneInput) phoneInput.value = phoneInput.value.replace(/[\s-]/g, '');
     if (!form.reportValidity()) return;
 
     var fd = new FormData(form);
