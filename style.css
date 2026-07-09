@@ -296,7 +296,7 @@ a { color: var(--yellow); text-decoration: none; }
   .scrub-sticky { position: static; height: auto; padding: 70px 0; background: var(--black) url("hap-poster.jpg") center/cover no-repeat; }
   .scrub-video { display: none; }
   .scrub-steps { position: static; }
-  .scrub-step { position: static; opacity: 1; transform: none; padding: 20px 22px; }
+  .scrub-step { position: static; opacity: 1; transform: none; padding: 20px 22px; pointer-events: auto; }
   .scroll-arrow, .float-dot { animation: none; }
 }
 

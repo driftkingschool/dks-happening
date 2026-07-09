@@ -19,7 +19,7 @@ var REDUCED_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mo
   var h = document.getElementById('cd-hours');
   var m = document.getElementById('cd-mins');
   var s = document.getElementById('cd-secs');
-  if (!d) return;
+  if (!d || !h || !m || !s) return;
   function pad(n) { return n < 10 ? '0' + n : String(n); }
   function tick() {
     var diff = EVENT_TIME - Date.now();
@@ -87,11 +87,23 @@ var REDUCED_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mo
     var delta = targetY - startY;
     var duration = 1300; // fast, but the scrubbed video visibly races forward
     var start = performance.now();
+    var cancelled = false;
+    function cancel() { cancelled = true; cleanup(); }
+    function cleanup() {
+      ['wheel', 'touchstart', 'keydown'].forEach(function (ev) {
+        window.removeEventListener(ev, cancel);
+      });
+    }
+    // user input takes back control mid-animation
+    ['wheel', 'touchstart', 'keydown'].forEach(function (ev) {
+      window.addEventListener(ev, cancel, { passive: true });
+    });
     function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
     function frame(now) {
+      if (cancelled) return;
       var p = Math.min(1, (now - start) / duration);
       window.scrollTo(0, startY + delta * ease(p));
-      if (p < 1) requestAnimationFrame(frame);
+      if (p < 1) requestAnimationFrame(frame); else cleanup();
     }
     requestAnimationFrame(frame);
   }
@@ -99,7 +111,7 @@ var REDUCED_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mo
   document.querySelectorAll('[data-fast-register]').forEach(function (btn) {
     btn.addEventListener('click', fastScrollToRegister);
   });
-  if (pill) {
+  if (pill && hero) {
     pill.hidden = false;
     pill.addEventListener('click', fastScrollToRegister);
     var heroVisible = true;
@@ -121,10 +133,20 @@ var REDUCED_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mo
 /* ====== LEAD FORM ====== */
 (function () {
   var form = document.getElementById('lead-form');
-  if (!form) return;
   var btn = document.getElementById('lead-submit');
   var successEl = document.getElementById('lead-success');
   var errorEl = document.getElementById('lead-error');
+  var waFallback = document.getElementById('wa-fallback');
+  if (!form || !btn || !successEl || !errorEl || !waFallback) return;
+
+  // normalize pasted phone numbers (dashes/spaces) before pattern validation runs
+  var phoneInput = form.querySelector('input[name="phone"]');
+  if (phoneInput) {
+    phoneInput.addEventListener('input', function () {
+      var clean = phoneInput.value.replace(/[\s-]/g, '');
+      if (clean !== phoneInput.value) phoneInput.value = clean;
+    });
+  }
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -162,7 +184,7 @@ var REDUCED_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mo
       })
       .catch(function (err) {
         console.error('Lead submit failed:', err);
-        document.getElementById('wa-fallback').href =
+        waFallback.href =
           'https://wa.me/972537757323?text=' + encodeURIComponent(
             'היי, אני רוצה להירשם לאליפות DKS 30/07.\nשם: ' + payload.fullName +
             '\nטלפון: ' + payload.phone + '\nתפקיד: ' + payload.role +
