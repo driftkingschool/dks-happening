@@ -224,8 +224,18 @@ a { color: var(--cyan); text-decoration: none; }
 .role-tile { display: flex; align-items: center; gap: 0.8rem; background: rgba(21, 22, 26, 0.9); border: 1px solid var(--line); border-radius: var(--radius); padding: 0.9rem 1rem; cursor: pointer; }
 .role-tile:has(input:checked) { border-color: var(--cyan); background: rgba(0, 174, 239, 0.12); }
 .role-tile input { accent-color: var(--cyan); width: 18px; height: 18px; }
+.role-tile > div { flex: 1; }
 .role-tile strong { display: block; font-size: 1rem; }
-.role-tile span { display: block; font-size: 0.82rem; color: var(--muted); }
+.role-tile > div span { display: block; font-size: 0.82rem; color: var(--muted); }
+.role-price {
+  flex: 0 0 auto;
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: var(--cyan);
+  direction: ltr;
+  white-space: nowrap;
+}
+.register-sub .price { color: var(--cyan); font-weight: 900; white-space: nowrap; }
 
 .hp-wrap { position: absolute; inset-inline-start: -9999px; top: -9999px; height: 1px; overflow: hidden; }
 
