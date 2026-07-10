@@ -158,6 +158,7 @@ function clamp01(n) { return Math.min(1, Math.max(0, n)); }
       formType: 'happening',
       fullName: String(fd.get('fullName') || '').trim(),
       phone: String(fd.get('phone') || '').replace(/[\s-]/g, ''),
+      email: String(fd.get('email') || '').trim(),
       role: String(fd.get('role') || ''),
       notes: String(fd.get('notes') || '').trim(),
       website: String(fd.get('website') || ''), // honeypot
@@ -186,7 +187,7 @@ function clamp01(n) { return Math.min(1, Math.max(0, n)); }
         console.error('Lead submit failed:', err);
         waFallback.href = 'https://wa.me/972537757323?text=' + encodeURIComponent(
           'היי, אני רוצה להירשם לאליפות DKS 30/07.\nשם: ' + payload.fullName +
-          '\nטלפון: ' + payload.phone + '\nתפקיד: ' + payload.role +
+          '\nטלפון: ' + payload.phone + '\nאימייל: ' + payload.email + '\nתפקיד: ' + payload.role +
           (payload.notes ? '\nהערות: ' + payload.notes : ''));
         errorEl.hidden = false;
         btn.disabled = false;
