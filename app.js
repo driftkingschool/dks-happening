@@ -138,6 +138,19 @@ function clamp01(n) { return Math.min(1, Math.max(0, n)); }
   var waFallback = document.getElementById('wa-fallback');
   if (!form || !btn || !successEl || !errorEl || !waFallback) return;
 
+  // Payment-return banners: CardCom redirects back with ?paid=success|fail (#register anchor scrolls).
+  var paidParam = new URLSearchParams(window.location.search).get('paid');
+  if (paidParam === 'success') {
+    form.hidden = true;
+    successEl.hidden = false;
+    successEl.querySelector('h3').textContent = 'התשלום התקבל!';
+    successEl.querySelector('p').textContent = 'שריינתם מקום לאליפות. נתראה ב-30/07 במוטור סיטי!';
+  } else if (paidParam === 'fail') {
+    errorEl.hidden = false;
+    errorEl.querySelector('p').textContent = 'התשלום לא הושלם. מילוי הטופס מחדש ייתן קישור תשלום חדש, או:';
+    waFallback.href = 'https://wa.me/972537757323?text=' + encodeURIComponent('היי, ניסיתי לשלם על כרטיס צופה לאליפות 30/07 והתשלום לא הושלם.');
+  }
+
   // normalize pasted phone numbers (dashes/spaces) before pattern validation runs
   var phoneInput = form.querySelector('input[name="phone"]');
   if (phoneInput) {
@@ -181,6 +194,11 @@ function clamp01(n) { return Math.min(1, Math.max(0, n)); }
         if (!result.ok) throw new Error(result.error || 'שגיאה בשליחה');
         form.hidden = true;
         successEl.hidden = false;
+        if (result.payUrl && /^https:\/\/secure\.cardcom\.solutions\//.test(result.payUrl)) {
+          successEl.querySelector('h3').textContent = 'הפרטים נקלטו!';
+          successEl.querySelector('p').textContent = 'מעבירים אתכם לתשלום מאובטח...';
+          setTimeout(function () { window.location.href = result.payUrl; }, 1200);
+        }
         successEl.scrollIntoView({ block: 'nearest' });
       })
       .catch(function (err) {
