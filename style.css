@@ -277,12 +277,12 @@ a { color: var(--cyan); text-decoration: none; }
 /* ====== REDUCED MOTION: no scrub. Static frames, stacked content. ====== */
 @media (prefers-reduced-motion: reduce) {
   #video-bg .scrub-video { display: none; }
-  #video-bg { background: var(--black) url("hap-poster.jpg") center/cover no-repeat; }
+  #video-bg { background: var(--black) url("hap-poster.webp") center/cover no-repeat; }
   .story { height: auto; }
   .story-sticky { position: static; height: auto; padding: 4rem 22px; overflow: visible; }
   .story-tag { position: static; margin-bottom: 2rem; }
   .story-points { height: auto; display: grid; gap: 3rem; }
   .story-point { position: static; opacity: 1; transform: none; pointer-events: auto; }
-  .register-section { background: var(--black) url("hap-last.jpg") center/cover no-repeat; }
+  .register-section { background: var(--black) url("hap-last.webp") center/cover no-repeat; }
   .scroll-arrow, .float-dot { animation: none; }
 }
